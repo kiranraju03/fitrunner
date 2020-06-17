@@ -10,13 +10,13 @@ class MainLayout extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          //Stateless: Static elements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-          ProfileCardDetails(),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          //Stateless: Static elements
+          ProfileCardDetails(),
           //Stateful: As chart changes on selection
           FitnessChart(),
-          //Stateless: Static elements                                                                                                                                                                                                                                                                                                                                                            
-          GoalsSet()                                                                                                                                            
-        ],                                                                                                                                      
+          //Stateless: Static elements
+          GoalsSet()
+        ],
       ),
     );
   }

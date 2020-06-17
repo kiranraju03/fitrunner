@@ -11,6 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # for step progress bar look in profile
+  step_progress_indicator: ^0.2.3+6
+
+  #For State Management
+  provider: ^4.1.2
 
   cupertino_icons: ^0.1.3
 
