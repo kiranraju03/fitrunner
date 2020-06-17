@@ -15,47 +15,45 @@ class _GoalsSetState extends State<GoalsSet> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
+        child: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "My Goals",
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  "My Goals",
+                  style: TextStyle(
+                    fontSize: 25,
                   ),
-                  new DropdownButton(
-                    underline: Container(), //to get rid of the underline
-                    iconEnabledColor: Colors.purple,
-                    value: _selectedOption,
-                    items: _dropDownChoices.map((String val) {
-                      return new DropdownMenuItem(
-                        child: new Text(
-                          val,
-                          style: TextStyle(color: Colors.purple),
-                        ),
-                        value: val,
-                      );
-                    }).toList(),
-                    onChanged: (newVal) {
-                      this.setState(() {
-                        _selectedOption = newVal;
-                      });
-                    },
-                  )
-                ],
+                ),
               ),
-              steppedProgressBar("Running", 2, 30, 180, Colors.purple),
-              steppedProgressBar("Pilates", 5, 60, 120, Colors.red[700]),
-              steppedProgressBar("Yoga", 8, 90, 120, Colors.blue[900]),
-            ]),
+              new DropdownButton(
+                underline: Container(), //to get rid of the underline
+                iconEnabledColor: Colors.purple,
+                value: _selectedOption,
+                items: _dropDownChoices.map((String val) {
+                  return new DropdownMenuItem(
+                    child: new Text(
+                      val,
+                      style: TextStyle(color: Colors.purple),
+                    ),
+                    value: val,
+                  );
+                }).toList(),
+                onChanged: (newVal) {
+                  this.setState(() {
+                    _selectedOption = newVal;
+                  });
+                },
+              )
+            ],
+          ),
+          steppedProgressBar("Running", 2, 30, 180, Colors.purple),
+          steppedProgressBar("Pilates", 5, 60, 120, Colors.red[700]),
+          steppedProgressBar("Yoga", 8, 90, 120, Colors.blue[900]),
+        ]),
       ),
     );
   }

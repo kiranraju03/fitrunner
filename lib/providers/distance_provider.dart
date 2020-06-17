@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class DistanceProvider extends ChangeNotifier {
   List<Map<String, Object>> _distanceList = [
     {'day': 'Sun', 'distance': 50},
-    {'day': 'Mon', 'distance': 80},
-    {'day': 'Tue', 'distance': 10},
-    {'day': 'Wed', 'distance': 40},
+    {'day': 'Mon', 'distance': 10},
+    {'day': 'Tue', 'distance': 40},
+    {'day': 'Wed', 'distance': 60},
     {'day': 'Thu', 'distance': 72},
-    {'day': 'Fri', 'distance': 30},
-    {'day': 'Sat', 'distance': 45},
+    {'day': 'Fri', 'distance': 80},
+    {'day': 'Sat', 'distance': 20},
   ];
 
   int totalDistance = 0;

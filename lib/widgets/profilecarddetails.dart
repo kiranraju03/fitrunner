@@ -1,6 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProfileCardDetails extends StatelessWidget {
+import '../providers/calories_provider.dart';
+import '../providers/distance_provider.dart';
+import '../providers/totalsteps_provider.dart';
+
+class ProfileCardDetails extends StatefulWidget {
+  @override
+  _ProfileCardDetailsState createState() => _ProfileCardDetailsState();
+}
+
+class _ProfileCardDetailsState extends State<ProfileCardDetails> {
+  CaloriesProvider caloriesProvider;
+
+  DistanceProvider distanceProvider;
+
+  TotalStepsProvider totalStepsProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    caloriesProvider = Provider.of<CaloriesProvider>(context, listen: false);
+    caloriesProvider.setTotalCalories();
+    distanceProvider = Provider.of<DistanceProvider>(context, listen: false);
+    distanceProvider.setTotalDistance();
+    totalStepsProvider =
+        Provider.of<TotalStepsProvider>(context, listen: false);
+    totalStepsProvider.setTotalSteps();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,16 +132,18 @@ class ProfileCardDetails extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                numberAccomplished("800", "distance, mi"),
-                numberAccomplished("105K", "total steps"),
-                numberAccomplished("3.8K", "total calories, kcal"),
+                numberAccomplished(
+                    distanceProvider.totalDistance.toString(), "distance, mi"),
+                numberAccomplished(
+                    totalStepsProvider.totalSteps.toString(), "total steps"),
+                numberAccomplished(caloriesProvider.totalCalories.toString(),
+                    "total calories, kcal"),
               ],
             )
           ],
         ));
   }
 
-  //Used to get the accomplished column elements
   Widget numberAccomplished(String number, String accomplishmentType) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class TotalStepsProvider extends ChangeNotifier {
   List<Map<String, Object>> _stepsList = [
-    {'day': 'Sun', 'steps': 5000},
-    {'day': 'Mon', 'steps': 8000},
-    {'day': 'Tue', 'steps': 1000},
-    {'day': 'Wed', 'steps': 4000},
-    {'day': 'Thu', 'steps': 7200},
-    {'day': 'Fri', 'steps': 3000},
-    {'day': 'Sat', 'steps': 4500},
+    {'day': 'Sun', 'steps': 1500},
+    {'day': 'Mon', 'steps': 4500},
+    {'day': 'Tue', 'steps': 500},
+    {'day': 'Wed', 'steps': 5000},
+    {'day': 'Thu', 'steps': 3000},
+    {'day': 'Fri', 'steps': 2000},
+    {'day': 'Sat', 'steps': 8000},
   ];
 
   int totalSteps = 0;
@@ -23,5 +23,4 @@ class TotalStepsProvider extends ChangeNotifier {
     });
     print(totalSteps);
   }
-
 }

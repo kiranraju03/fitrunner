@@ -4,6 +4,8 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 // import './chartlinebar.dart';
 import '../providers/calories_provider.dart';
+import '../providers/distance_provider.dart';
+import '../providers/totalsteps_provider.dart';
 
 class FitnessChart extends StatefulWidget {
   @override
@@ -13,31 +15,60 @@ class FitnessChart extends StatefulWidget {
 class _FitnessChartState extends State<FitnessChart> {
   List<String> _dropDownChoices = ['Week', 'Month', 'Year'];
   String _selectedOption = 'Week';
-  // List<Map<String, Object>> chartValues = [
-  //   {'day': 'Sun', 'barValue': 5000},
-  //   {'day': 'Mon', 'barValue': 8000},
-  //   {'day': 'Tue', 'barValue': 1000},
-  //   {'day': 'Wed', 'barValue': 4000},
-  //   {'day': 'Thu', 'barValue': 7200},
-  //   {'day': 'Fri', 'barValue': 3000},
-  //   {'day': 'Sat', 'barValue': 4500},
-  // ];
+
+  String selectedChartOption = "steps";
+
   List<Map<String, Object>> chartValues = [];
 
   List<Widget> chartDisplayed = [];
 
   CaloriesProvider caloriesProvider;
+  DistanceProvider distanceProvider;
+  TotalStepsProvider totalStepsProvider;
 
   @override
   void initState() {
     super.initState();
     caloriesProvider = Provider.of<CaloriesProvider>(context, listen: false);
-    // caloriesProvider.setTotalCalories();
+    distanceProvider = Provider.of<DistanceProvider>(context, listen: false);
+    totalStepsProvider =
+        Provider.of<TotalStepsProvider>(context, listen: false);
+
+    //Making steps chart to be visible on launch
+    this.setState(() {
+      chartValues = totalStepsProvider.stepsList;
+    });
+    print(chartValues);
+    List<Widget> li = stepsChartTrigger();
+    this.setState(() {
+      chartDisplayed = li;
+    });
+  }
+
+  List<Widget> calorieChartTrigger() {
+    return chartValues
+        .map((eachBar) =>
+            chartLined(eachBar['day'], eachBar['caloriesBurnt'], 100))
+        .toList();
+  }
+
+  List<Widget> distanceChartTrigger() {
+    return chartValues
+        .map((eachBar) => chartLined(eachBar['day'], eachBar['distance'], 10))
+        .toList();
+  }
+
+  List<Widget> stepsChartTrigger() {
+    return chartValues
+        .map((eachBar) => chartLined(eachBar['day'], eachBar['steps'], 1000))
+        .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(caloriesProvider.caloriesList);
+    // print(caloriesProvider.caloriesList);
+    // print(distanceProvider.distanceList);
+    // print(totalStepsProvider.stepsList);
     // this.setState(() {
     //   chartValues = caloriesProvider.caloriesList;
     // });
@@ -84,16 +115,46 @@ class _FitnessChartState extends State<FitnessChart> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text("Steps"),
+                child: GestureDetector(
+                    onTap: () {
+                      this.setState(() {
+                        chartValues = totalStepsProvider.stepsList;
+                        selectedChartOption = "steps";
+                      });
+                      print(chartValues);
+                      List<Widget> li = stepsChartTrigger();
+                      this.setState(() {
+                        chartDisplayed = li;
+                      });
+                    },
+                    child: Text(
+                      "Steps",
+                      style: TextStyle(
+                        color: selectedChartOption == "steps"
+                            ? Colors.purple
+                            : Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: GestureDetector(
-                  child: Text("Calories"),
+                  child: Text(
+                    "Calories",
+                    style: TextStyle(
+                      color: selectedChartOption == "calories"
+                          ? Colors.purple
+                          : Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   onTap: () {
                     this.setState(() {
                       chartValues = caloriesProvider.caloriesList;
+                      selectedChartOption = "calories";
                     });
+                    print(chartValues);
                     List<Widget> li = calorieChartTrigger();
                     this.setState(() {
                       chartDisplayed = li;
@@ -103,12 +164,33 @@ class _FitnessChartState extends State<FitnessChart> {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text("Distance"),
+                child: GestureDetector(
+                    onTap: () {
+                      this.setState(() {
+                        chartValues = distanceProvider.distanceList;
+                        selectedChartOption = "distance";
+                      });
+                      print(chartValues);
+                      List<Widget> li = distanceChartTrigger();
+                      this.setState(() {
+                        chartDisplayed = li;
+                      });
+                      print(chartDisplayed);
+                    },
+                    child: Text(
+                      "Distance",
+                      style: TextStyle(
+                        color: selectedChartOption == "distance"
+                            ? Colors.purple
+                            : Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: chartDisplayed,
@@ -123,24 +205,26 @@ class _FitnessChartState extends State<FitnessChart> {
     ));
   }
 
-  List<Widget> calorieChartTrigger() {
-    return chartValues
-        .map((eachBar) =>
-            chartLined(eachBar['day'], eachBar['caloriesBurnt'], 100))
-        .toList();
-  }
-
   Widget chartLined(String weekday, int barValue, int divider) {
     return Flexible(
       fit: FlexFit.tight,
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Text(
+              barValue.toString(),
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
           StepProgressIndicator(
             direction: Axis.vertical,
             progressDirection: TextDirection.rtl,
             padding: 0,
             roundedEdges: Radius.circular(20),
-            size: 8,
+            size: 10,
             selectedColor: Colors.red[700],
             unselectedColor: Color.fromRGBO(220, 220, 220, 2),
             totalSteps: 10,
@@ -148,7 +232,12 @@ class _FitnessChartState extends State<FitnessChart> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text(weekday),
+            child: Text(
+              weekday,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
           ),
         ],
       ),
