@@ -12,10 +12,10 @@ class FriendRequestCard extends StatelessWidget {
           )
         ],
         gradient: LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-          stops: [0.35, 0.5],
-          colors: [Colors.red[600], Colors.purple],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: [0.25, 0.5],
+          colors: [Colors.red[700], Colors.purple],
           tileMode: TileMode.repeated,
         ),
         borderRadius: BorderRadius.circular(20),
@@ -71,7 +71,7 @@ class FriendRequestCard extends StatelessWidget {
                   ),
                   child: IconButton(
                     icon: Icon(Icons.favorite),
-                    color: Colors.red,
+                    color: Colors.purple,
                     onPressed: () {},
                   ),
                 ),

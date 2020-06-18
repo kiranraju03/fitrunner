@@ -43,7 +43,6 @@ class _ProfileCardDetailsState extends State<ProfileCardDetails> {
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
-        // height: (MediaQuery.of(context).size.height) / 4.0,
         child: Column(
           children: [
             //Top navigation and settings

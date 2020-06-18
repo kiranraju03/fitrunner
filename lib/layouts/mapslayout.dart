@@ -18,7 +18,8 @@ class MapsLayout extends StatelessWidget {
           ),
           Positioned(
             top: 50,
-            left: 10,
+            left: 30,
+            right: 30,
             child: SearchBar(),
           ),
           Positioned(
