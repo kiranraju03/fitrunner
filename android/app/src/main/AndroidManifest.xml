@@ -5,10 +5,15 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+    <!--Providing access to maps-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> -->
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="fitrunner"
         android:icon="@mipmap/ic_launcher">
+        <!--Adding for enabling maps-->
+        <meta-data android:name="com.google.android.geo.API_KEY" 
+          android:value="AIzaSyDLnyyGey70aZi8diTB48STItdHt88mTgI"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

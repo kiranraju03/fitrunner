@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.purple,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // home: MainLayout(),
-        home: MapsLayout(),
+        home: MainLayout(), //To Access the First Screenshot
+        // home: MapsLayout(), //To Access the Second Screenshot
       ),
     );
   }
