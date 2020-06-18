@@ -29,3 +29,8 @@ flutter:
 
   assets:
     - assets/images.png
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf

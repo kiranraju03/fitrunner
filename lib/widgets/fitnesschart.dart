@@ -82,7 +82,7 @@ class _FitnessChartState extends State<FitnessChart> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Text(
                   "Total Activity",
                   style: TextStyle(
@@ -114,7 +114,7 @@ class _FitnessChartState extends State<FitnessChart> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: GestureDetector(
                     onTap: () {
                       this.setState(() {
@@ -138,7 +138,7 @@ class _FitnessChartState extends State<FitnessChart> {
                     )),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: GestureDetector(
                   child: Text(
                     "Calories",
@@ -163,7 +163,7 @@ class _FitnessChartState extends State<FitnessChart> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: GestureDetector(
                     onTap: () {
                       this.setState(() {
@@ -190,7 +190,7 @@ class _FitnessChartState extends State<FitnessChart> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: chartDisplayed,

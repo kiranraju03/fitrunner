@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './widgets/mainlayout.dart';
+import './layouts/mainlayout.dart';
+import './layouts/mapslayout.dart';
+
 import './providers/calories_provider.dart';
 import './providers/distance_provider.dart';
 import './providers/totalsteps_provider.dart';
@@ -28,13 +30,16 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'FitRunner',
-          theme: ThemeData(
-            primarySwatch: Colors.purple,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: MainLayout()),
+        debugShowCheckedModeBanner: false,
+        title: 'FitRunner',
+        theme: ThemeData(
+          fontFamily: 'Nunito',
+          primarySwatch: Colors.purple,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        // home: MainLayout(),
+        home: MapsLayout(),
+      ),
     );
   }
 }

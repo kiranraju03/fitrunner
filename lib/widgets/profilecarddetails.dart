@@ -52,11 +52,15 @@ class _ProfileCardDetailsState extends State<ProfileCardDetails> {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.arrow_left),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white70,
+                  ),
                 ),
                 IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.settings),
+                  color: Colors.white70,
                 )
               ],
             ),

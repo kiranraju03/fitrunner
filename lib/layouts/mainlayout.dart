@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './profilecarddetails.dart';
-import './fitnesschart.dart';
-import './goalsset.dart';
+import '../widgets/profilecarddetails.dart';
+import '../widgets/fitnesschart.dart';
+import '../widgets/goalsset.dart';
 
 class MainLayout extends StatelessWidget {
   @override
